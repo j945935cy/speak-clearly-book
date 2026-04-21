@@ -17,6 +17,7 @@ src/09-scenarios.md \
 src/10-advanced.md"
 
 cp style.css dist/style.css
+cp enhance.js dist/enhance.js
 
 pandoc metadata.yaml $CHAPTERS -o dist/book.epub --css=style.css
-pandoc metadata.yaml $CHAPTERS -o dist/index.html --css=style.css --standalone --toc
+pandoc metadata.yaml $CHAPTERS -o dist/index.html --css=style.css --standalone --toc --include-in-header=header.html
