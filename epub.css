@@ -1,0 +1,127 @@
+/* EPUB-specific stylesheet (Coffee Tone) */
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #fcfbf9;
+  color: #2c241b;
+  font-family: "SF Pro Display", "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
+  line-height: 1.8;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #a47c5c;
+  line-height: 1.2;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+h1 {
+  font-size: 2.2em;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.6em;
+  border-bottom: 1px solid #e3ddd7;
+  padding-bottom: 0.2em;
+}
+
+h3 {
+  font-size: 1.3em;
+  color: #7a5a40;
+}
+
+p {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  text-align: justify;
+}
+
+ul, ol {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  padding-left: 1.5em;
+}
+
+li {
+  margin-bottom: 0.5em;
+}
+
+blockquote {
+  margin: 1.5em 1em;
+  padding: 1em;
+  border-left: 4px solid #a47c5c;
+  background-color: #f9f4f0;
+  color: #5c4a3d;
+}
+
+code {
+  padding: 0.1em 0.3em;
+  background-color: #f0ebe6;
+  border-radius: 3px;
+  font-family: monospace;
+}
+
+pre {
+  margin: 1.5em 0;
+  padding: 1em;
+  background-color: #261f1a;
+  color: #f5f3ef;
+  overflow-x: auto;
+  border-radius: 6px;
+}
+
+pre code {
+  padding: 0;
+  background-color: transparent;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5em 0;
+}
+
+th, td {
+  padding: 0.5em;
+  border: 1px solid #e3ddd7;
+  text-align: left;
+}
+
+th {
+  background-color: #f9f4f0;
+  font-weight: bold;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1.5em auto;
+}
+
+figcaption {
+  text-align: center;
+  font-style: italic;
+  font-size: 0.9em;
+  color: #857567;
+  margin-top: 0.5em;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #e3ddd7;
+  margin: 2em 0;
+}
+
+/* Bilingual Styles */
+.en {
+  color: #7a5a40;
+  font-family: "Georgia", "Times New Roman", serif;
+  margin-top: 0.2em;
+}
+
+.en p, .en li {
+  font-family: inherit;
+}
