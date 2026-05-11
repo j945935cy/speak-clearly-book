@@ -42,7 +42,7 @@ Abstract: This code is unstable
 Concrete: The same process threw an error twice in three days
 :::
 
-![簡單有效的例子](https://images.unsplash.com/photo-1516321165247-4aa89a48be55?w=800&auto=format&fit=crop&q=80)
+
 *好的例子夠簡單，直接相關，不搶走重點。*
 
 
