@@ -540,3 +540,52 @@ body.lang-en-only .panel-body > blockquote:not(.en) {
   50% { transform: scale(1.15); }
   100% { transform: scale(1); }
 }
+
+/* Locked Chapter Styles */
+.chapter-chip.locked {
+  opacity: 0.6;
+  background: rgba(230, 230, 235, 0.82);
+  border: 1px dashed rgba(210, 210, 215, 0.8);
+  cursor: pointer;
+}
+.chapter-chip.locked span {
+  background: transparent;
+  font-size: 1.1rem;
+}
+
+/* Purchase CTA Panel */
+.panel-buy {
+  text-align: center;
+  background: radial-gradient(circle at top center, rgba(164, 124, 92, 0.18), transparent 50%), linear-gradient(180deg, #fffaf1 0%, #ffffff 100%);
+  border: 2px solid rgba(164, 124, 92, 0.2);
+  padding: 64px 32px;
+}
+.panel-buy .panel-kicker {
+  font-size: 1.2rem;
+}
+.panel-buy .buy-message {
+  font-size: 1.15rem;
+  color: var(--muted);
+  max-width: 600px;
+  margin: 24px auto 36px;
+  line-height: 1.8;
+}
+.panel-buy .buy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 42px;
+  background: var(--brand);
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: bold;
+  border-radius: 999px;
+  text-decoration: none;
+  box-shadow: 0 12px 24px rgba(164, 124, 92, 0.25);
+  transition: all 0.3s ease;
+}
+.panel-buy .buy-btn:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 16px 32px rgba(164, 124, 92, 0.35);
+  background: var(--brand-dark);
+}

@@ -41,8 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <h1>${title}</h1>
       <p class="hero-subtitle">${subtitle}</p>
       <div class="hero-actions">
-        <a class="hero-button primary" href="#${topLinks[0]?.getAttribute("href")?.replace(/^#/, "") || ""}">開始閱讀</a>
-        <a class="hero-button secondary" href="book.epub">下載 EPUB</a>
+        <a class="hero-button primary" href="#${topLinks[0]?.getAttribute("href")?.replace(/^#/, "") || ""}">開始試閱</a>
       </div>
     </div>
   `;
@@ -52,9 +51,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   topLinks.forEach((link, index) => {
     const chip = document.createElement("a");
-    chip.className = "chapter-chip";
-    chip.href = link.getAttribute("href") || "#";
-    chip.innerHTML = `<span>${String(index + 1).padStart(2, "0")}</span><strong>${link.textContent.trim()}</strong>`;
+    if (index < 5) {
+      chip.className = "chapter-chip";
+      chip.href = link.getAttribute("href") || "#";
+      chip.innerHTML = `<span>${String(index + 1).padStart(2, "0")}</span><strong>${link.textContent.trim()}</strong>`;
+    } else {
+      chip.className = "chapter-chip locked";
+      chip.href = "#purchase-cta";
+      chip.innerHTML = `<span>🔒</span><strong>${link.textContent.trim()}</strong>`;
+    }
     chapterNav.appendChild(chip);
   });
 
@@ -80,6 +85,8 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   sections.forEach((section, index) => {
+    if (index >= 5) return; // Skip rendering chapters 5 and beyond
+
     const article = document.createElement("section");
     article.className = `chapter-panel panel-${index % 4}`;
     const sectionId = section.heading.id || `section-${index + 1}`;
@@ -104,6 +111,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     main.appendChild(article);
   });
+
+  // Append Purchase CTA Panel
+  const ctaPanel = document.createElement("section");
+  ctaPanel.id = "purchase-cta";
+  ctaPanel.className = "chapter-panel panel-buy";
+  ctaPanel.innerHTML = `
+    <div class="panel-header">
+      <p class="panel-kicker">Get the Full Book</p>
+      <h2>解鎖完整內容，提升溝通力！</h2>
+    </div>
+    <p class="buy-message">免費試閱到此結束。後續還有「精準表達」、「實戰案例」、「受眾分析」與「高壓情境演練」等 6 個精彩章節等待您探索，讓每一次開口都充滿說服力！</p>
+    <a class="buy-btn" href="https://books.google.com.tw/books/about?id=fxbYEQAAQBAJ&redir_esc=y" target="_blank">🛒 在 Google Play 圖書購買完整版</a>
+  `;
+  main.appendChild(ctaPanel);
 
   const footer = document.createElement("footer");
   footer.className = "page-footer";
