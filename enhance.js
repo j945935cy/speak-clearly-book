@@ -41,8 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <h1>${title}</h1>
       <p class="hero-subtitle">${subtitle}</p>
       <div class="hero-actions">
-        <a class="hero-button primary" href="#${topLinks[0]?.getAttribute("href")?.replace(/^#/, "") || ""}">開始閱讀</a>
-        <a class="hero-button secondary" href="book.epub">下載 EPUB</a>
+        <a class="hero-button primary" href="#${topLinks[0]?.getAttribute("href")?.replace(/^#/, "") || ""}">開始試閱</a>
       </div>
     </div>
   `;
