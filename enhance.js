@@ -129,6 +129,69 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // Text-to-Speech logic
+  const enBlocks = page.querySelectorAll('.en');
+  let currentUtterance = null;
+  let currentBtn = null;
+
+  enBlocks.forEach((block) => {
+    const btn = document.createElement("button");
+    btn.className = "tts-btn";
+    btn.title = "Read Aloud";
+    btn.innerHTML = "🔊";
+    btn.setAttribute("aria-label", "Read English text aloud");
+    
+    block.insertBefore(btn, block.firstChild);
+
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      e.preventDefault();
+
+      if (window.speechSynthesis.speaking) {
+        window.speechSynthesis.cancel();
+        if (currentBtn) {
+          currentBtn.classList.remove("playing");
+          currentBtn.innerHTML = "🔊";
+        }
+        if (currentBtn === btn) {
+          currentBtn = null;
+          return;
+        }
+      }
+
+      const clone = block.cloneNode(true);
+      const cloneBtn = clone.querySelector('.tts-btn');
+      if (cloneBtn) cloneBtn.remove();
+      const textToRead = clone.textContent.trim();
+
+      if (!textToRead) return;
+
+      currentUtterance = new SpeechSynthesisUtterance(textToRead);
+      currentUtterance.lang = "en-US";
+      currentUtterance.rate = 0.95; // Slightly slower for clearer pronunciation
+      
+      currentUtterance.onstart = () => {
+        btn.classList.add("playing");
+        btn.innerHTML = "⏹️"; 
+        currentBtn = btn;
+      };
+      
+      currentUtterance.onend = () => {
+        btn.classList.remove("playing");
+        btn.innerHTML = "🔊";
+        if (currentBtn === btn) currentBtn = null;
+      };
+      
+      currentUtterance.onerror = () => {
+        btn.classList.remove("playing");
+        btn.innerHTML = "🔊";
+        if (currentBtn === btn) currentBtn = null;
+      };
+
+      window.speechSynthesis.speak(currentUtterance);
+    });
+  });
+
   const handleAnchor = (hash, smooth = true) => {
     if (!hash) return;
     const id = decodeURIComponent(hash.replace(/^#/, ""));
