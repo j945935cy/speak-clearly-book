@@ -41,6 +41,7 @@ New-Item -ItemType Directory -Path $distPath | Out-Null
 & pandoc "metadata.yaml" @chapters "-o" "dist/book.epub" "--css=style.css"
 & pandoc "metadata.yaml" @chapters "-o" "dist/index.html" "--css=style.css" "--standalone" "--toc"
 Copy-Item -LiteralPath (Join-Path $projectRoot "style.css") -Destination (Join-Path $distPath "style.css") -Force
+Copy-Item -LiteralPath (Join-Path $projectRoot "enhance.js") -Destination (Join-Path $distPath "enhance.js") -Force
 
 $server = Start-Process python -ArgumentList "-m", "http.server", "$Port" -WorkingDirectory $distPath -PassThru
 

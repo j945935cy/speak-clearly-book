@@ -25,6 +25,11 @@ document.addEventListener("DOMContentLoaded", () => {
     <div class="ribbon-inner">
       <div class="ribbon-brand">${title || "學會講清楚"}</div>
       <div class="ribbon-meta">${author}${author && date ? " · " : ""}${date}</div>
+      <div class="lang-toggles">
+        <button class="lang-btn active" data-lang="bilingual">中英</button>
+        <button class="lang-btn" data-lang="zh">中文</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
     </div>
   `;
 
@@ -109,6 +114,20 @@ document.addEventListener("DOMContentLoaded", () => {
   page.append(ribbon, hero, chapterNav, main, footer);
   body.innerHTML = "";
   body.appendChild(page);
+
+  // Language toggle logic
+  const langBtns = document.querySelectorAll(".lang-btn");
+  langBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      langBtns.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      const lang = btn.getAttribute("data-lang");
+      body.classList.remove("lang-zh-only", "lang-en-only");
+      if (lang === "zh") body.classList.add("lang-zh-only");
+      if (lang === "en") body.classList.add("lang-en-only");
+    });
+  });
 
   const handleAnchor = (hash, smooth = true) => {
     if (!hash) return;
